@@ -1,0 +1,33 @@
+{
+  "manifest_version": 3,
+  "name": "Add to NotebookLM",
+  "description": "Add the current page as a source to a new Google NotebookLM notebook.",
+  "version": "0.1.0",
+  "action": {
+    "default_title": "Add to NotebookLM",
+    "default_popup": "popup.html"
+  },
+  "permissions": [
+    "scripting",
+    "tabs",
+    "activeTab",
+    "contextMenus",
+    "clipboardWrite"
+  ],
+  "host_permissions": [
+    "https://notebooklm.google.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://notebooklm.google.com/*"
+      ],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}
